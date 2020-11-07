@@ -2,15 +2,18 @@ package com.mastery.simplewebapp.dao;
 
 import com.mastery.simplewebapp.dto.Employee;
 import com.mastery.simplewebapp.postgresInput;
+import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class EmployeeDao extends postgresInput {
 
     //READ
-    public static List<Employee> read() throws ClassNotFoundException, SQLException {
+    public static @ResponseBody List<Employee> read() throws ClassNotFoundException, SQLException {
         Class.forName("org.postgresql.Driver");
         Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/employeedb",
                 login, password);

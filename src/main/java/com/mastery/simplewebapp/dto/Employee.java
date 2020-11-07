@@ -5,13 +5,13 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class Employee {
-    private Long employeeId;
-    private String firstName;
-    private String lastName;
-    private int departmentId;
-    private String jobTitle;
-    private Gender gender;
-    private Calendar dateOfBirth;
+    private final Long employeeId;
+    private final String firstName;
+    private final String lastName;
+    private final int departmentId;
+    private final String jobTitle;
+    private final Gender gender;
+    private final Calendar dateOfBirth;
 
     public Employee(Long employeeId, String firstName, String lastName, int departmentId,
                     String jobTitle, String gender, Date dateOfBirth){

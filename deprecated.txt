@@ -26,3 +26,5 @@
         if(Gender.randomGender() == Gender.FEMALE) return "FEMALE" ;
         else return "MALE";
     }
+
+    {"employeeId":4,"firstName":"UPDATED","lastName":"UPDATED","departmentId":7,"jobTitle":"Senior","gender":"FEMALE","dateOfBirth":"2020-11-06T21:00:00.000+00:00","genderString":"FEMALE"}

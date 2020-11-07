@@ -2,6 +2,7 @@ package com.mastery.simplewebapp.service;
 
 import com.mastery.simplewebapp.dao.EmployeeDao;
 import com.mastery.simplewebapp.dto.*;
+import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.sql.SQLException;
@@ -9,7 +10,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class EmployeeService {
+@Service
+public class EmployeeService{
     
     private static List<Employee> employees = new ArrayList<>();
 
@@ -54,4 +56,8 @@ public class EmployeeService {
         for (Employee employee : employees) employee.print();
     }
 
+    //to test response (uses in tests directory)
+    void report() {
+
+    }
 }
