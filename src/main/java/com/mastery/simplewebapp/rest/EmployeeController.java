@@ -1,9 +1,8 @@
 package com.mastery.simplewebapp.rest;
 
 import com.mastery.simplewebapp.dto.Employee;
-import org.springframework.web.bind.annotation.*;
-
 import com.mastery.simplewebapp.service.EmployeeService;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 import java.util.List;
