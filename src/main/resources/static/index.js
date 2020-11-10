@@ -28,7 +28,7 @@ $(document).ready(function() {
         }
         $('.count').append(counter - 1);
     });
-    $("button").click(function(){
+    $("a").click(function(){
         var sendInfo = {
             "employeeId": 4,
             "firstName": "New",

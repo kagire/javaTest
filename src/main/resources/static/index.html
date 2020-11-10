@@ -1,60 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,700,900');
+        button{
+          padding: 1em 3em;
+          border: 3px solid #0087AC;
+          transition: all 300ms ease;
+          box-shadow: 0px 4px 10px 2px rgba(black, 0.2);
+
+
+          &:before{
+            position: absolute;
+            content: '';
+            width: 0%; height: 100%;
+            background: #0087AC;
+            top: 0; left: 50%;
+            z-index: -1;
+            transition: all 0ms ease;
+          }
+        }
+
+        .above_table{
+        font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+        color: #656665;
+        font-size: 18px;
+        padding: 10px;
+        }
+
+        table {
+            font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+            text-align: left;
+            border-collapse: separate;
+            border-spacing: 5px;
+            background: #ECE9E0;
+            color: #656665;
+            border: 16px solid #ECE9E0;
+            border-radius: 20px;
+            }
+            th {
+            font-size: 18px;
+            padding: 10px;
+            }
+            td {
+            background: #F5D7BF;
+            padding: 10px;
+        }
+    </style>
     <meta charset="UTF-8">
     <title>Employee list</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="index.js"></script>
 </head>
 <body>
-Hello there! Here is first 5 employees in list:
+<p class = "above_table">Hello there! Here is first 5 employees in list:</p>
 
-<ul> 
-        <li class= employee-id-1 ></li>
-        <li class= first-name-1 ></li>
-        <li class= last-name-1 ></li>
-        <li class= department-id-1 ></li>
-        <li class= job-title-1 ></li>
-        <li class= gender-1 ></li>
-        <li class= date-1></li>
-</ul>
-<ul> 
-    <li class= employee-id-2 ></li>
-    <li class= first-name-2 ></li>
-    <li class= last-name-2 ></li>
-    <li class= department-id-2 ></li>
-    <li class= job-title-2 ></li>
-    <li class= gender-2 ></li>
-    <li class= date-2></li>
-</ul>
-<ul> 
-    <li class= employee-id-3 ></li>
-    <li class= first-name-3 ></li>
-    <li class= last-name-3 ></li>
-    <li class= department-id-3 ></li>
-    <li class= job-title-3 ></li>
-    <li class= gender-3 ></li>
-    <li class= date-3></li>
-</ul>
-<ul> 
-    <li class= employee-id-4 ></li>
-    <li class= first-name-4 ></li>
-    <li class= last-name-4 ></li>
-    <li class= department-id-4 ></li>
-    <li class= job-title-4 ></li>
-    <li class= gender-4 ></li>
-    <li class= date-4></li>
-</ul>
-<ul> 
-    <li class= employee-id-5 ></li>
-    <li class= first-name-5 ></li>
-    <li class= last-name-5 ></li>
-    <li class= department-id-5 ></li>
-    <li class= job-title-5 ></li>
-    <li class= gender-5 ></li>
-    <li class= date-5></li>
-</ul>
-<p class="count"> Total employees:  </p>
+<table>
+    <tr>
+        <td class= employee-id-1></td>
+        <td class= first-name-1></td>
+        <td class= last-name-1></td>
+        <td class= department-id-1></td>
+        <td class= job-title-1></td>
+        <td class= gender-1></td>
+        <td class= date-1></td>
+    </tr>
+    <tr>
+        <td class= employee-id-2></td>
+        <td class= first-name-2></td>
+        <td class= last-name-2></td>
+        <td class= department-id-2></td>
+        <td class= job-title-2></td>
+        <td class= gender-2></td>
+        <td class= date-2></td>
+    </tr>
+    <tr>
+        <td class= employee-id-3></td>
+        <td class= first-name-3></td>
+        <td class= last-name-3></td>
+        <td class= department-id-3></td>
+        <td class= job-title-3></td>
+        <td class= gender-3></td>
+        <td class= date-3></td>
+    </tr>
+    <tr>
+        <td class= employee-id-4 ></td>
+        <td class= first-name-4></td>
+        <td class= last-name-4></td>
+        <td class= department-id-4></td>
+        <td class= job-title-4></td>
+        <td class= gender-4></td>
+        <td class= date-4></td>
+    </tr>
+    <tr>
+        <td class= employee-id-5></td>
+        <td class= first-name-5></td>
+        <td class= last-name-5></td>
+        <td class= department-id-5></td>
+        <td class= job-title-5></td>
+        <td class= gender-5></td>
+        <td class= date-5></td>
+    </tr>
+    <tr>
+        <th class ="count"> Total employees:   </th>
+    <tr>
+</table>
 <button> Create new </button>
 </body>
 </html>
