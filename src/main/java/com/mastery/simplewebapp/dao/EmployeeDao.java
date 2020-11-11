@@ -12,7 +12,7 @@ import java.util.List;
 public class EmployeeDao extends postgresInput {
 
     //READ
-    public static List<Employee> read() throws ClassNotFoundException, SQLException {
+    public List<Employee> read() throws ClassNotFoundException, SQLException {
         Class.forName("org.postgresql.Driver");
         Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/employeedb",
                 login, password);
@@ -30,7 +30,7 @@ public class EmployeeDao extends postgresInput {
     }
 
     //CREATE
-    public static List<Employee> create(String firstName, String lastName, int departmentId, String jobTitle,
+    public List<Employee> create(String firstName, String lastName, int departmentId, String jobTitle,
                                         String gender, Date dateOfBirth) throws ClassNotFoundException, SQLException {
         Class.forName("org.postgresql.Driver");
         Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/employeedb",
@@ -49,7 +49,7 @@ public class EmployeeDao extends postgresInput {
     }
 
     //DELETE
-    public static List<Employee> delete(long employeeId) throws ClassNotFoundException, SQLException {
+    public List<Employee> delete(long employeeId) throws ClassNotFoundException, SQLException {
         Class.forName("org.postgresql.Driver");
         Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/employeedb",
                 login, password);
@@ -61,7 +61,7 @@ public class EmployeeDao extends postgresInput {
     }
 
     //UPDATE
-    public static List<Employee> update(long employeeId, Employee employee) throws ClassNotFoundException, SQLException {
+    public List<Employee> update(long employeeId, Employee employee) throws ClassNotFoundException, SQLException {
         Class.forName("org.postgresql.Driver");
         Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/employeedb",
                 login, password);
@@ -80,7 +80,7 @@ public class EmployeeDao extends postgresInput {
     }
 
     //get exact one
-    public static Employee get(long employeeId) throws ClassNotFoundException, SQLException {
+    public Employee get(long employeeId) throws ClassNotFoundException, SQLException {
         Class.forName("org.postgresql.Driver");
         Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/employeedb",
                 login, password);
@@ -96,7 +96,7 @@ public class EmployeeDao extends postgresInput {
     }
 
     //record exists or not
-    public static boolean ifExist(long employeeId) throws ClassNotFoundException, SQLException {
+    public boolean ifExist(long employeeId) throws ClassNotFoundException, SQLException {
         Class.forName("org.postgresql.Driver");
         Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/employeedb",
                 login, password);

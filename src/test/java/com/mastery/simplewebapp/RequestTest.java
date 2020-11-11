@@ -20,7 +20,7 @@ public class RequestTest {
     private TestRestTemplate restTemplate;
 
     @Test
-    public void greetingShouldReturnDefaultMessage() throws Exception {
+    public void checkResponse(){
         assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/employees",
                 String.class)).contains("id");
     }

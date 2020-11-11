@@ -5,7 +5,9 @@ import com.mastery.simplewebapp.dto.Employee;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -19,42 +21,37 @@ import java.util.List;
 @SpringBootTest
 class EmployeeServiceTest {
 
+    @Autowired
+    EmployeeService employeeService;
+
+    @MockBean
+    EmployeeDao employeeDao;
+
     @Test
     void create() throws SQLException, ClassNotFoundException {
         List<Employee> employees = new ArrayList<>();
         employees.add(new Employee((long)1, "One", "Two", 28, "mr President",
                 "MALE", new Date(1)));
-        employees = EmployeeService.create(employees.get(0));
+        employees = employeeService.create(employees.get(0));
 
-        Assert.assertTrue(EmployeeDao.ifExist(employees.get(0).getEmployeeId()));
-        Assert.assertNotNull(employees.get(0).getFirstName());
+        Assert.assertNotNull(employees);
     }
 
     @Test
     void update() throws SQLException, ClassNotFoundException {
-        List<Employee> employees = new ArrayList<>();
-        Employee newEmployee = new Employee((long)1, "UPDATE", "UPDATE", 28, "mr President",
-                "MALE", new Date(1));
-        long counter = 0;
-        while(counter < 100){
-            if(EmployeeDao.ifExist(counter)){
-                employees.add(EmployeeService.get(counter));
-                break;
-            }
-            counter++;
-        }
-        employees = EmployeeService.edit(counter, newEmployee);
+        Employee newEmployee = new Employee((long)1, "UPDATE", "UPDATE", 28,
+                "mr President", "MALE", new Date(1));
+        List<Employee> employees = employeeService.edit(1, newEmployee);
 
-        Assert.assertTrue(EmployeeDao.ifExist(employees.get(0).getEmployeeId()));
-        Assert.assertNotNull(employees.get(0).getFirstName());
+        Assert.assertNotNull(employees);
+
+        Mockito.verify(employeeDao, Mockito.never()).get(ArgumentMatchers.anyLong());
+        Mockito.verify(employeeDao, Mockito.atMostOnce()).ifExist(ArgumentMatchers.anyLong());
     }
 
-    @MockBean
-    private EmployeeService employeeService;
-
     @Test
-    void checkResponse(){
-        employeeService.report();
-        Mockito.verify(employeeService, Mockito.times(1)).report();
+    void print() throws SQLException, ClassNotFoundException {
+        employeeService.print();
+        Mockito.verify(employeeDao, Mockito.times(1)).read();
     }
 }

@@ -28,7 +28,7 @@ $(document).ready(function() {
         }
         $('.count').append(counter - 1);
     });
-    $("a").click(function(){
+    $(".newEmployee").click(function(){
         var sendInfo = {
             "employeeId": 4,
             "firstName": "New",
@@ -42,13 +42,14 @@ $(document).ready(function() {
         $.ajax({
             type: "POST",
             url: "http://localhost:8080/employees",
-            dataType: "json",
-            data: sendInfo
+            contentType: 'application/x-www-form-urlencoded',
+            data: sendInfo,
+            context: document.body
         }).then(function(data) {
           var counter = 1;
           for (const value of Object.values(data)) {
               var counterString = counter.toString();
-  
+
               var employeeIdString = '.employee-id-' + counterString;
               var nameString = '.first-name-' + counterString;
               var lastNameString = '.last-name-' + counterString;
@@ -56,7 +57,7 @@ $(document).ready(function() {
               var jobTitleString = '.job-title-' + counterString;
               var genderString = '.gender-' + counterString;
               var dateString = '.date-' + counterString;
-  
+
               $(employeeIdString).append(value.employeeId);
               $(nameString).append(value.firstName);
               $(lastNameString).append(value.lastName);
@@ -64,7 +65,7 @@ $(document).ready(function() {
               $(jobTitleString).append(value.jobTitle);
               $(genderString).append(value.gender);
               $(dateString).append(value.dateOfBirth);
-  
+
               console.log(value.employeeId);
               counter++;
           }

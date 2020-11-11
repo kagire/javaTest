@@ -1,6 +1,6 @@
 # If you have any questions...
 ### About database
-In my employeedb column `employee_id` is a Primary Key, that is important info to understand why im inserting fields like i do.
+Column `employee_id` in my **employeedb** is a Primary Key, that is important info to understand why im inserting fields like i do.
 
 ### About tests
 Test provided to sevice and connection. [Fast link to tests](https://github.com/kagire/javaTest/tree/main/src/test/java/com/mastery/simplewebapp "Fast link to tests")
