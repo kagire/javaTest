@@ -1,8 +1,19 @@
-# If you have any questions...
 ### About database
 Column `employee_id` in my **employeedb** is a Primary Key, that is important info to understand why im inserting fields like I do.\
-SQL script to insert fields if you want your db not to be empty:
-```postgres-sql
+SQL script for fast db creation:
+```sql
+CREATE DATABASE employeedb;
+
+CREATE TABLE employee (
+    employee_id BIGSERIAL PRIMARY KEY,
+    first_name varchar NOT NULL,
+    last_name varchar NOT NULL,
+    department_id int NOT NULL,
+    job_title varchar NOT NULL,
+    gender char(6) NOT NULL,
+    date_of_birth date NOT NULL
+);
+
 insert into employee (date_of_birth, department_id, first_name, gender, job_title, last_name)
 values (TO_DATE('1/1/2011', 'DD/MM/YYYY'), 80, 'Sarah', 'FEMALE', 'Security manager', 'Andersen');
 

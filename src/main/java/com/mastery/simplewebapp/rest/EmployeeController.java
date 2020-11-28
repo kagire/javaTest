@@ -5,7 +5,6 @@ import com.mastery.simplewebapp.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLException;
 import java.util.List;
 
 @RestController
@@ -16,28 +15,27 @@ public class EmployeeController {
     EmployeeService employeeService;
 
     @GetMapping
-    public List<Employee> showEmployee() throws SQLException, ClassNotFoundException {
+    public List<Employee> showEmployee(){
         return employeeService.print();
     }
 
     @GetMapping("{id}")
-    public Employee getEmployee(@PathVariable long id) throws SQLException, ClassNotFoundException {
+    public Employee getEmployee(@PathVariable long id){
         return employeeService.get(id);
     }
 
     @PostMapping
-    public List<Employee> newEmployee(@RequestBody Employee employee) throws SQLException, ClassNotFoundException {
+    public List<Employee> newEmployee(@RequestBody Employee employee){
         return employeeService.create(employee);
     }
 
     @PutMapping("{id}")
-    public List<Employee> updateEmployee(@PathVariable long id, @RequestBody Employee employee)
-            throws SQLException, ClassNotFoundException {
+    public List<Employee> updateEmployee(@PathVariable long id, @RequestBody Employee employee){
         return employeeService.edit(id, employee);
     }
 
     @DeleteMapping("{id}")
-    public List<Employee> deleteEmployee(@PathVariable long id) throws SQLException, ClassNotFoundException {
+    public List<Employee> deleteEmployee(@PathVariable long id){
         return employeeService.delete(id);
     }
 }

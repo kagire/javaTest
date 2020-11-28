@@ -22,6 +22,6 @@ public class RequestTest {
     @Test
     public void checkResponse(){
         assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/employees",
-                String.class)).contains("id");
+                String.class)).contains("employeeId");
     }
 }
