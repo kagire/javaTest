@@ -25,8 +25,8 @@ public class EmployeeService{
     }
 
     public List<Employee> create(Employee employee){
-        employees = employeeDao.create(employee.getFirstName(), employee.getLastName(), employee.getDepartmentId(),
-                employee.getJobTitle(), employee.getGenderString(), convertToSqlDate(employee.getDateOfBirth()));
+        employees = employeeDao.create(new Employee((long) 1, employee.getFirstName(), employee.getLastName(), employee.getDepartmentId(),
+                employee.getJobTitle(), employee.getGender() /*GenderString()*/, convertToSqlDate(employee.getDateOfBirth())));
         printList(employees);
         return employees;
     }

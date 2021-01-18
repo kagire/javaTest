@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@Deprecated
 //mapping data on SQL request and DB fields
 public class EmployeeMapper implements RowMapper<Employee> {
 
