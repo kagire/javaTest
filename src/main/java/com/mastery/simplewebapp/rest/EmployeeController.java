@@ -3,6 +3,8 @@ package com.mastery.simplewebapp.rest;
 import com.mastery.simplewebapp.dto.Employee;
 import com.mastery.simplewebapp.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,17 +27,19 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public List<Employee> newEmployee(@RequestBody Employee employee){
-        return employeeService.create(employee);
+    public void newEmployee(@RequestBody Employee employee){
+        employeeService.create(employee);
     }
 
     @PutMapping("{id}")
-    public List<Employee> updateEmployee(@PathVariable long id, @RequestBody Employee employee){
-        return employeeService.edit(id, employee);
+    public ResponseEntity<Employee> updateEmployee (@PathVariable long id, @RequestBody Employee employee) throws Exception {
+        employeeService.edit(id, employee);
+        return new ResponseEntity<Employee>(employee, HttpStatus.OK);
     }
 
     @DeleteMapping("{id}")
-    public List<Employee> deleteEmployee(@PathVariable long id){
-        return employeeService.delete(id);
+    public ResponseEntity<String> deleteEmployee(@PathVariable long id) throws Exception {
+        employeeService.delete(id);
+        return new ResponseEntity<String>("updated", HttpStatus.OK);
     }
 }

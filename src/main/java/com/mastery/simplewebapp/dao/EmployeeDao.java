@@ -27,23 +27,21 @@ public class EmployeeDao extends JdbcDaoSupport {
     }
 
     //CREATE
-    public List<Employee> create(Employee employee){
-        employee = employeeRepository.save(employee);
-        return read();
+    public void create(Employee employee){
+        employeeRepository.save(employee);
     }
 
     //DELETE
-    public List<Employee> delete(long employeeId){
+    public void delete(long employeeId){
         employeeRepository.deleteById(employeeId);
-        return read();
+
     }
 
     //UPDATE
-    public List<Employee> update(long employeeId, Employee employee){
+    public void update(long employeeId, Employee employee){
         Employee oldEmployee = employeeRepository.findById(employeeId).get();
         oldEmployee.cloneData(employee);
         employeeRepository.save(oldEmployee);
-        return read();
     }
 
     //get exact one

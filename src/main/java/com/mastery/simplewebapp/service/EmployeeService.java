@@ -2,6 +2,7 @@ package com.mastery.simplewebapp.service;
 
 import com.mastery.simplewebapp.dao.EmployeeDao;
 import com.mastery.simplewebapp.dto.*;
+import com.mastery.simplewebapp.exceptions.EmployeeNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,25 +25,31 @@ public class EmployeeService{
         return employees;
     }
 
-    public List<Employee> create(Employee employee){
-        employees = employeeDao.create(new Employee((long) 1, employee.getFirstName(), employee.getLastName(), employee.getDepartmentId(),
+    public void create(Employee employee){
+        employeeDao.create(new Employee((long) 1, employee.getFirstName(), employee.getLastName(), employee.getDepartmentId(),
                 employee.getJobTitle(), employee.getGender() /*GenderString()*/, convertToSqlDate(employee.getDateOfBirth())));
+        employees = employeeDao.read();
         printList(employees);
-        return employees;
     }
 
-    public List<Employee> delete(long employeeId){
+    public void delete(long employeeId) throws Exception {
         if(employeeDao.ifExist(employeeId))
-            employees = employeeDao.delete(employeeId);
+            employeeDao.delete(employeeId);
+        else throw new EmployeeNotFoundException(employeeId);
+        employees = employeeDao.read();
         printList(employees);
-        return employees;
     }
 
-    public List<Employee> edit(long employeeId, Employee employee){
+    public void edit(long employeeId, Employee employee) throws Exception{
         if(employeeDao.ifExist(employeeId))
-            employees = employeeDao.update(employeeId, employee);
+            employeeDao.update(employeeId, employee);
+        else throw new EmployeeNotFoundException(employeeId);
+        employees = employeeDao.read();
         printList(employees);
-        return employees;
+    }
+
+    public boolean ifExist(long employeeId){
+        return employeeDao.ifExist(employeeId);
     }
 
     public Employee get(long employeeId){

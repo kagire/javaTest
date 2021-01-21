@@ -27,5 +27,4 @@ public class AppConfiguration {
         dataSourceBuilder.password("1234");
         return dataSourceBuilder.build();
     }
-
 }
