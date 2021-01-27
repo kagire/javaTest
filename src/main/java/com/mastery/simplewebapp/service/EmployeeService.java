@@ -3,6 +3,8 @@ package com.mastery.simplewebapp.service;
 import com.mastery.simplewebapp.dao.EmployeeDao;
 import com.mastery.simplewebapp.dto.*;
 import com.mastery.simplewebapp.exceptions.EmployeeNotFoundException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,20 +18,23 @@ public class EmployeeService{
 
     @Autowired
     EmployeeDao employeeDao;
-    
+
+    // list
     private List<Employee> employees = new ArrayList<>();
+
+    Logger logger = LogManager.getLogger(EmployeeService.class);
 
     public List<Employee> print(){
         employees = employeeDao.read();
-        printList(employees);
+        logToConsole();
         return employees;
     }
 
     public void create(Employee employee){
-        employeeDao.create(new Employee((long) 1, employee.getFirstName(), employee.getLastName(), employee.getDepartmentId(),
-                employee.getJobTitle(), employee.getGender() /*GenderString()*/, convertToSqlDate(employee.getDateOfBirth())));
+        employeeDao.create(new Employee(1, employee.getFirstName(), employee.getLastName(), employee.getDepartmentId(),
+                employee.getJobTitle(), employee.getGender(), convertToSqlDate(employee.getDateOfBirth())));
         employees = employeeDao.read();
-        printList(employees);
+        logToConsole();
     }
 
     public void delete(long employeeId) throws Exception {
@@ -37,7 +42,7 @@ public class EmployeeService{
             employeeDao.delete(employeeId);
         else throw new EmployeeNotFoundException(employeeId);
         employees = employeeDao.read();
-        printList(employees);
+        logToConsole();
     }
 
     public void edit(long employeeId, Employee employee) throws Exception{
@@ -45,15 +50,13 @@ public class EmployeeService{
             employeeDao.update(employeeId, employee);
         else throw new EmployeeNotFoundException(employeeId);
         employees = employeeDao.read();
-        printList(employees);
+        logToConsole();
     }
 
-    public boolean ifExist(long employeeId){
-        return employeeDao.ifExist(employeeId);
-    }
-
-    public Employee get(long employeeId){
-        return employeeDao.get(employeeId);
+    public Employee get(long employeeId) throws EmployeeNotFoundException {
+        if(employeeDao.ifExist(employeeId))
+            return employeeDao.get(employeeId);
+        else throw new EmployeeNotFoundException(employeeId);
     }
 
     //converting to sql format to transfer
@@ -62,7 +65,7 @@ public class EmployeeService{
     }
 
     //to print list to terminal
-    public void printList(List<Employee> employees){
-        for (Employee employee : employees) employee.print();
+    public void logToConsole(){
+        logger.trace("Records total: " + employees.size());
     }
 }

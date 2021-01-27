@@ -4,14 +4,15 @@ SQL script for fast db creation:
 ```sql
 CREATE DATABASE employeedb;
 
-CREATE TABLE employee (
-    employee_id BIGSERIAL PRIMARY KEY,
-    first_name varchar NOT NULL,
-    last_name varchar NOT NULL,
-    department_id int NOT NULL,
-    job_title varchar NOT NULL,
-    gender char(6) NOT NULL,
-    date_of_birth date NOT NULL
+CREATE TABLE public.employee(
+    employee_id bigint,
+    first_name character varying NOT NULL,
+    last_name character varying NOT NULL,
+    department_id integer NOT NULL,
+    job_title character varying NOT NULL,
+    gender character varying(6) NOT NULL,
+    date_of_birth date NOT NULL,
+    PRIMARY KEY (employee_id)
 );
 
 insert into employee (date_of_birth, department_id, first_name, gender, job_title, last_name)
@@ -21,9 +22,12 @@ insert into employee (date_of_birth, department_id, first_name, gender, job_titl
 values (TO_DATE('5/10/2002', 'DD/MM/YYYY'), 2, 'Miles', 'MALE', 'Spider-man', 'Morales');
 ```
 ### About tests
-Test provided to service and connection. [Fast link to tests](https://github.com/kagire/javaTest/tree/main/src/test/java/com/mastery/simplewebapp "Fast link to tests")
+Test provided to service and connection. [Fast link to tests](https://github.com/kagire/javaTest/tree/main/src/test/java/com/mastery/simplewebapp "Fast link to tests") \
+Since jpa was added here is data jpa test also.
+### About an actuator and logger
+Used logger: **log4j** \
+To change log level through actuator API you can use this request example (POST):
+> http://localhost:5000/actuator/loggers/com.mastery.simplewebapp.service \
+> body: `{"configuredLevel":"debug"}`
 
-### About UI
-It's not fully-functional, but still can show ajax-requests are working, showing POST and GET methods.  [Fast link to UI](https://github.com/kagire/javaTest/tree/main/src/main/resources/static "Fast link to UI")
 
-> You need to delete `@RequestBody` annotation from EmployeeController->newEmployee method to accept ajax JSON from html form

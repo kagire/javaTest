@@ -22,24 +22,26 @@ public class EmployeeController {
     }
 
     @GetMapping("{id}")
-    public Employee getEmployee(@PathVariable long id){
-        return employeeService.get(id);
+    public ResponseEntity<Employee> getEmployee(@PathVariable long id) throws Exception{
+        Employee employee =  employeeService.get(id);
+        return new ResponseEntity<>(employee, HttpStatus.OK);
     }
 
     @PostMapping
-    public void newEmployee(@RequestBody Employee employee){
+    public ResponseEntity<Employee> newEmployee(@RequestBody Employee employee){
         employeeService.create(employee);
+        return new ResponseEntity<>(employee, HttpStatus.CREATED);
     }
 
     @PutMapping("{id}")
     public ResponseEntity<Employee> updateEmployee (@PathVariable long id, @RequestBody Employee employee) throws Exception {
         employeeService.edit(id, employee);
-        return new ResponseEntity<Employee>(employee, HttpStatus.OK);
+        return new ResponseEntity<>(employee, HttpStatus.OK);
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteEmployee(@PathVariable long id) throws Exception {
         employeeService.delete(id);
-        return new ResponseEntity<String>("updated", HttpStatus.OK);
+        return new ResponseEntity<>("updated", HttpStatus.OK);
     }
 }

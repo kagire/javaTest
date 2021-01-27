@@ -10,7 +10,7 @@ import java.util.GregorianCalendar;
 public class Employee {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long employeeId;
     @Column(name = "first_name")
     private String firstName;
@@ -20,23 +20,22 @@ public class Employee {
     private int departmentId;
     @Column(name = "job_title")
     private String jobTitle;
+    @Enumerated(EnumType.STRING)
     @Column(name = "gender")
-    private String gender;
+    private Gender gender;
     @Column(name = "date_of_birth")
     private Calendar dateOfBirth;
 
-    public Employee(){};
+    public Employee(){}
 
-    public Employee(Long employeeId, String firstName, String lastName, int departmentId,
-                    String jobTitle, String gender, Date dateOfBirth){
+    public Employee(long employeeId, String firstName, String lastName, int departmentId,
+                    String jobTitle, Gender gender, Date dateOfBirth){
         this.employeeId = employeeId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.departmentId = departmentId;
         this.jobTitle = jobTitle;
         this.gender = gender;
-        //if (gender.equals("MALE")) this.gender = Gender.MALE;
-        //else this.gender = Gender.FEMALE;
         this.dateOfBirth = convertToCalendar(dateOfBirth);
     }
 
@@ -58,14 +57,7 @@ public class Employee {
     public String getJobTitle(){ return jobTitle; }
 
 
-    public /*Gender*/ String getGender(){ return gender; }
-
-//    public String GenderString() {
-//
-//        if (gender == Gender.FEMALE) return "FEMALE";
-//        else return "MALE";
-//    }
-
+    public Gender getGender(){ return gender; }
 
     public Calendar getDateOfBirth(){ return dateOfBirth; }
 
@@ -80,12 +72,7 @@ public class Employee {
 
     public void setJobTitle(String jobTitle){ this.jobTitle = jobTitle; }
 
-//    public void setGender(Gender gender){ this.gender = gender; }
-
-//    public void setGenderString(String gender) {
- //       if (gender.equals("FEMALE")) this.gender = Gender.FEMALE;
- //       else this.gender = Gender.MALE;
-//    }
+    public void setGender(Gender gender){ this.gender = gender; }
 
     public void setDateOfBirth(Date dateOfBirth){ this.dateOfBirth = convertToCalendar(dateOfBirth); }
 
@@ -96,13 +83,6 @@ public class Employee {
         this.jobTitle = employee.getJobTitle();
         this.gender = employee.getGender();
         this.dateOfBirth = employee.getDateOfBirth();
-    }
-
-    public void print(){
-        System.out.println("Id: " + employeeId + ", name: " + firstName + ", last name: " + lastName + ", department: "
-                + departmentId + ", job: " + jobTitle + ", gender: " + this.gender /*this.GenderString()*/ + ", birthdate: " +
-                dateOfBirth.get(Calendar.YEAR) + "-" + dateOfBirth.get(Calendar.MONTH) +
-                "-" + dateOfBirth.get(Calendar.DAY_OF_MONTH));
     }
 
     private static Calendar convertToCalendar(Date date) {

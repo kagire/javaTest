@@ -11,4 +11,5 @@ target/
 *.ipr
 
 
-deprecated.txt
+/log4j2/
+/logback/
