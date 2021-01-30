@@ -8,9 +8,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 @Service
@@ -32,7 +30,7 @@ public class EmployeeService{
 
     public void create(Employee employee){
         employeeDao.create(new Employee(1, employee.getFirstName(), employee.getLastName(), employee.getDepartmentId(),
-                employee.getJobTitle(), employee.getGender(), convertToSqlDate(employee.getDateOfBirth())));
+                employee.getJobTitle(), employee.getGender(), employee.getDateOfBirth()));
         employees = employeeDao.read();
         logToConsole();
     }
@@ -57,11 +55,6 @@ public class EmployeeService{
         if(employeeDao.ifExist(employeeId))
             return employeeDao.get(employeeId);
         else throw new EmployeeNotFoundException(employeeId);
-    }
-
-    //converting to sql format to transfer
-    private Date convertToSqlDate(Calendar calendar) {
-        return new Date(calendar.getTimeInMillis());
     }
 
     //to print list to terminal

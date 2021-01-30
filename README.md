@@ -23,11 +23,16 @@ values (TO_DATE('5/10/2002', 'DD/MM/YYYY'), 2, 'Miles', 'MALE', 'Spider-man', 'M
 ```
 ### About tests
 Test provided to service and connection. [Fast link to tests](https://github.com/kagire/javaTest/tree/main/src/test/java/com/mastery/simplewebapp "Fast link to tests") \
-Since jpa was added here is data jpa test also.
+Here is data jpa test too.
 ### About an actuator and logger
 Used logger: **log4j** \
 To change log level through actuator API you can use this request example (POST):
 > http://localhost:5000/actuator/loggers/com.mastery.simplewebapp.service \
 > body: `{"configuredLevel":"debug"}`
 
+### About ActiveMQ
+Admin panel address: `http://localhost:8161/admin/` \
+Sample message request (POST):
+> http://localhost:8080//messages/send \
+> body: \**any string*\*
 
