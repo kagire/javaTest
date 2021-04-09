@@ -1,5 +1,8 @@
 package com.mastery.simplewebapp.dto;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -11,8 +14,8 @@ import java.sql.Date;
 public class Employee{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long employeeId;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private long employeeId;
     @NotBlank(message = "Cannot be blank")
     @Column(name = "first_name")
     private String firstName;
@@ -33,6 +36,16 @@ public class Employee{
     private Date dateOfBirth;
 
     public Employee(){}
+
+    public Employee(String firstName, String lastName, int departmentId,
+                    String jobTitle, Gender gender, Date dateOfBirth){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.departmentId = departmentId;
+        this.jobTitle = jobTitle;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+    }
 
     public Employee(long employeeId, String firstName, String lastName, int departmentId,
                     String jobTitle, Gender gender, Date dateOfBirth){
@@ -102,6 +115,8 @@ public class Employee{
 
     @Override
     public String toString() {
-        return this.firstName;
+        GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        return gson.toJson(this);
     }
 }

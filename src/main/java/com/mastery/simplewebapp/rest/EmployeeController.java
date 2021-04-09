@@ -21,7 +21,7 @@ public class EmployeeController {
     }
 
     @GetMapping("{id}")
-    public Employee getEmployee(@PathVariable long id) throws Exception{
+    public Employee getEmployee(@PathVariable long id){
         return employeeService.get(id);
     }
 
@@ -33,13 +33,13 @@ public class EmployeeController {
 
     @PutMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void updateEmployee (@PathVariable long id,@Valid @RequestBody Employee employee) throws Exception {
+    public void updateEmployee (@PathVariable long id,@Valid @RequestBody Employee employee){
         employeeService.edit(id, employee);
     }
 
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteEmployee(@PathVariable long id) throws Exception {
+    public void deleteEmployee(@PathVariable long id){
         employeeService.delete(id);
     }
 }

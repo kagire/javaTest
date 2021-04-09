@@ -1,5 +1,6 @@
 package com.mastery.simplewebapp.components;
 
+import com.mastery.simplewebapp.dto.Employee;
 import com.mastery.simplewebapp.service.EmployeeService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,15 +17,16 @@ public class JmsProducer {
     @Autowired
     JmsTemplate jmsTemplate;
 
-    @Value("${active-mq.topic}")
-    private String topic;
+    @Value("${active-mq.queue}")
+    private String queue;
 
     public void sendMessage(String message){
         try{
-            logger.trace("Attempting Send message to Topic: "+ topic);
-            jmsTemplate.convertAndSend(topic, message);
+            logger.trace("Sending to "+ queue);
+            logger.trace("Message: "+ message);
+            jmsTemplate.convertAndSend(queue, message);
         } catch(Exception e){
-            logger.error("Received Exception during send Message: ", e);
+            logger.error("Received exception during send message: ", e);
         }
     }
 }

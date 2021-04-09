@@ -29,13 +29,13 @@ public class EmployeeService{
     }
 
     public void create(Employee employee){
-        employeeDao.create(new Employee(1, employee.getFirstName(), employee.getLastName(), employee.getDepartmentId(),
+        employeeDao.create(new Employee(employee.getFirstName(), employee.getLastName(), employee.getDepartmentId(),
                 employee.getJobTitle(), employee.getGender(), employee.getDateOfBirth()));
         employees = employeeDao.read();
         logToConsole();
     }
 
-    public void delete(long employeeId) throws Exception {
+    public void delete(long employeeId){
         if(employeeDao.ifExist(employeeId))
             employeeDao.delete(employeeId);
         else throw new EmployeeNotFoundException(employeeId);
@@ -43,7 +43,7 @@ public class EmployeeService{
         logToConsole();
     }
 
-    public void edit(long employeeId, Employee employee) throws Exception{
+    public void edit(long employeeId, Employee employee){
         if(employeeDao.ifExist(employeeId))
             employeeDao.update(employeeId, employee);
         else throw new EmployeeNotFoundException(employeeId);
@@ -51,7 +51,7 @@ public class EmployeeService{
         logToConsole();
     }
 
-    public Employee get(long employeeId) throws EmployeeNotFoundException {
+    public Employee get(long employeeId){
         if(employeeDao.ifExist(employeeId))
             return employeeDao.get(employeeId);
         else throw new EmployeeNotFoundException(employeeId);

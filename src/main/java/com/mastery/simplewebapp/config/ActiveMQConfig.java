@@ -28,7 +28,7 @@ public class ActiveMQConfig {
     public JmsTemplate jmsTemplate(){
         JmsTemplate jmsTemplate = new JmsTemplate();
         jmsTemplate.setConnectionFactory(connectionFactory());
-        jmsTemplate.setPubSubDomain(true);  // Topic = true, Queue = false.
+        jmsTemplate.setPubSubDomain(false);  // Topic = true, Queue = false.
         return jmsTemplate;
     }
 
@@ -36,7 +36,7 @@ public class ActiveMQConfig {
     public DefaultJmsListenerContainerFactory jmsListenerContainerFactory(){
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
         factory.setConnectionFactory(connectionFactory());
-        factory.setPubSubDomain(true);
+        factory.setPubSubDomain(false);  // Setting false - listening queue
         return factory;
     }
 }

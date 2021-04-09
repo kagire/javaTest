@@ -1,5 +1,7 @@
 package com.mastery.simplewebapp.components;
 
+import com.google.gson.Gson;
+import com.mastery.simplewebapp.dto.Employee;
 import com.mastery.simplewebapp.service.EmployeeService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,18 +13,18 @@ import javax.jms.MessageListener;
 import javax.jms.TextMessage;
 
 @Component
-public class JmsConsumer implements MessageListener {
+public class JmsConsumer{
 
     Logger logger = LogManager.getLogger(EmployeeService.class);
 
-    @Override
-    @JmsListener(destination = "${active-mq.topic}")
-    public void onMessage(Message message) {
+    @JmsListener(destination = "${active-mq.queue}")
+    public void onMessage(String message) {
         try{
-            logger.info("Received Message: "+ ((TextMessage) message).getText());
+            Gson gson = new Gson();
+            Employee employee = gson.fromJson(message, Employee.class);
+            logger.info("Received Message: "+ employee.toString());
         } catch(Exception e) {
             logger.error("Received Exception : "+ e);
         }
-
     }
 }
