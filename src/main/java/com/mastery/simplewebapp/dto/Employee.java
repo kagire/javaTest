@@ -47,17 +47,6 @@ public class Employee{
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Employee(long employeeId, String firstName, String lastName, int departmentId,
-                    String jobTitle, Gender gender, Date dateOfBirth){
-        this.employeeId = employeeId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.departmentId = departmentId;
-        this.jobTitle = jobTitle;
-        this.gender = gender;
-        this.dateOfBirth = dateOfBirth;
-    }
-
     //get
     public long getEmployeeId(){ return employeeId; }
 
@@ -73,7 +62,6 @@ public class Employee{
 
     public Date getDateOfBirth(){ return dateOfBirth; }
 
-    //set
     public void setEmployeeId(long employeeId){ this.employeeId = employeeId; }
 
     public void setFirstName(String firstName){ this.firstName = firstName; }

@@ -5,12 +5,9 @@ body: `{"configuredLevel":"debug"}`
 
 ### ActiveMQ
 Admin panel address: `http://localhost:8161/admin/` \
-Sample message request (POST): `http://localhost:8080//messages/send` \
-body: `\*any string\*`
 
-### Logger and swagger:
+### Swagger:
 Swagger panel: `http://localhost:8080/swagger-ui/` \
-Used logger: **log4j**
 
 
 

@@ -34,5 +34,6 @@ services:
   activemq:
         image: "rmohr/activemq"
         container_name: activemq
+        restart: always
         ports:
           - "8161:8161"
